@@ -1,30 +1,21 @@
-
 import { useState, useEffect } from "react";
-
-
+import Description from "./description/Description";
+import Feedback from "./feedback/Feedback";
+import Opinions from "./options/Options"
 const App = () => {
-  const [first, setFirst] = useState(0);
-  const [second, setSecond] = useState(0);
-
-  useEffect(() => {
-    console.log("First updated: ", first);
-  }, [first]);
-
-  useEffect(() => {
-    console.log("Second updated: ", second);
-  }, [second]);
-
-  useEffect(() => {
-    console.log("First or second updated: ", first + second);
-  }, [first, second]);
+  const [opinions, setOpinions] = useState({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  });
 
   return (
-    <>
-      <button onClick={() => setFirst(first + 1)}>First: {first}</button>
-      <button onClick={() => setSecond(second + 1)}>Second: {second}</button>
-    </>
+    <div>
+      <Description></Description>
+      <Feedback></Feedback>
+      <Opinions></Opinions>
+    </div>
   );
 };
 
-
-export default App
+export default App;
