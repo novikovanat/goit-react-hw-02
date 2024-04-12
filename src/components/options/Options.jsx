@@ -1,10 +1,5 @@
 export default function Feedback({ handler, value }) {
   function Button({ value, name, handler }) {
-    console.log(value);
-    console.log(handler);
-    console.log(name);
-   
-
     return (
       <button onClick={handler} name={name}>
         {name}
@@ -15,8 +10,9 @@ export default function Feedback({ handler, value }) {
   return (
     <div>
       <Button handler={handler} value={value} name="good"></Button>
-      {/* <Button name="Bad"></Button>
-      <Button name="Neutral"></Button> */}
+      <Button handler={handler} value={value} name="bad"></Button>
+      <Button handler={handler} value={value} name="neutral"></Button>
+      <Button handler={handler} value={value} name="reset"></Button>
     </div>
   );
 }
