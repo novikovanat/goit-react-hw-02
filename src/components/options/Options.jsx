@@ -1,5 +1,5 @@
-export default function Feedback({ handler, value }) {
-  function Button({ value, name, handler }) {
+export default function Feedback({ handler }) {
+  function Button({ name, handler }) {
     return (
       <button onClick={handler} name={name}>
         {name}
@@ -9,10 +9,10 @@ export default function Feedback({ handler, value }) {
 
   return (
     <div>
-      <Button handler={handler} value={value} name="good"></Button>
-      <Button handler={handler} value={value} name="bad"></Button>
-      <Button handler={handler} value={value} name="neutral"></Button>
-      <Button handler={handler} value={value} name="reset"></Button>
+      <Button handler={handler} name="good"></Button>
+      <Button handler={handler} name="bad"></Button>
+      <Button handler={handler} name="neutral"></Button>
+      <Button handler={handler} name="reset"></Button>
     </div>
   );
 }
