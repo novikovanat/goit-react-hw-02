@@ -1,10 +1,9 @@
-export default function Feedback() {
-  return (
-    <div>
-      <button>Good</button>
-      <button>Neutral</button>
-      <button>Bad</button>
-      <button>Reset</button>
+export default function Options() {
+    return <div>
+        <p>Good</p>
+        <p>Neutral</p>
+        <p>Bad</p>
+        <p>Total</p>
+        <p>Positive</p>
     </div>
-  );
 }
