@@ -31,8 +31,8 @@ const App = () => {
   return (
     <div>
       <Description></Description>
-      <Options handler={clickHandler} value={option} ></Options>
-      <Feedback></Feedback>
+      <Options handler={clickHandler}></Options>
+      <Feedback values={option}></Feedback>
     </div>
   );
 };
