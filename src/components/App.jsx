@@ -5,10 +5,16 @@ import Options from "./options/Options";
 import Notification from "./Notification/Notification";
 
 const App = () => {
-  const [option, setOpions] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  const [option, setOpions] = useState(() => {
+    const savedClicks = window.localStorage.getItem("saved-clicks");
+    if (savedClicks !== null) {
+      return JSON.parse(savedClicks);
+    }
+    return {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
   });
 
   const totalFeedback = Object.values(option).reduce(
@@ -17,6 +23,10 @@ const App = () => {
   );
 
   const positiveFeedback = Math.round((option.good / totalFeedback) * 100);
+
+  useEffect(() => {
+    window.localStorage.setItem("saved-clicks", JSON.stringify(option));
+  });
 
   function clickHandler(e) {
     let type = e.currentTarget.name;
@@ -39,9 +49,12 @@ const App = () => {
   return (
     <div>
       <Description></Description>
-      <Options values={[clickHandler,totalFeedback]}></Options>
-      {totalFeedback === 0 ? <Notification></Notification>:
-      <Feedback values={[option, totalFeedback, positiveFeedback]}></Feedback>}
+      <Options values={[clickHandler, totalFeedback]}></Options>
+      {totalFeedback === 0 ? (
+        <Notification></Notification>
+      ) : (
+        <Feedback values={[option, totalFeedback, positiveFeedback]}></Feedback>
+      )}
     </div>
   );
 };
