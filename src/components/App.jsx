@@ -10,6 +10,13 @@ const App = () => {
     bad: 0,
   });
 
+  const totalFeedback = Object.values(option).reduce(
+    (total, value) => (total = value + total),
+    0
+  );
+
+  const positiveFeedback = Math.round((option.good / totalFeedback) * 100);
+
   function clickHandler(e) {
     let type = e.currentTarget.name;
     switch (type) {
@@ -32,7 +39,7 @@ const App = () => {
     <div>
       <Description></Description>
       <Options handler={clickHandler}></Options>
-      <Feedback values={option}></Feedback>
+      <Feedback values={[option, totalFeedback, positiveFeedback]}></Feedback>
     </div>
   );
 };

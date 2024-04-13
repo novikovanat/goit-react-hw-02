@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+export default function Feedback({ values: [option, total, positiveFb] }) {
+  console.log(option);
+  console.log("total", total);
 
-export default function Feedback({ values }) {
-  const feedbackList = Object.entries(values).map((value) => (
+  const feedbackList = Object.entries(option).map((value) => (
     <li key={value[0]}>
       <p>
         {value[0]}:<span>{value[1]}</span>
@@ -9,25 +10,19 @@ export default function Feedback({ values }) {
     </li>
   ));
 
-  function Paragraph({ content, object }) {
-    console.log("content", content);
-    console.log("obj", object);
-    const totalFeedback = Object.values(object).reduce(
-      (total, value) => ((total = value + total), 0)
-    );
+  function Paragraph({ content, value }) {
     return (
       <p>
-        {content}:<span>{totalFeedback}</span>
+        {content}:<span>{value}</span>
       </p>
     );
   }
 
-
   return (
     <div>
       <ul>{feedbackList}</ul>
-      <Paragraph content="Total" object={values}></Paragraph>
-      <Paragraph content="Positive" object={values}></Paragraph>
+      <Paragraph content="Total" value={total}></Paragraph>
+      <Paragraph content="Positive" value={positiveFb}></Paragraph>
     </div>
   );
 }
