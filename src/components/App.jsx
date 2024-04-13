@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Description from "./description/Description";
 import Feedback from "./feedback/Feedback";
 import Options from "./options/Options";
+import Notification from "./Notification/Notification";
 
 const App = () => {
   const [option, setOpions] = useState({
@@ -39,7 +40,8 @@ const App = () => {
     <div>
       <Description></Description>
       <Options handler={clickHandler}></Options>
-      <Feedback values={[option, totalFeedback, positiveFeedback]}></Feedback>
+      {totalFeedback === 0 ? <Notification></Notification>:
+      <Feedback values={[option, totalFeedback, positiveFeedback]}></Feedback>}
     </div>
   );
 };
