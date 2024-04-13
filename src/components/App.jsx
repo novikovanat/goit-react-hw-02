@@ -47,7 +47,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <>
       <Description></Description>
       <Options values={[clickHandler, totalFeedback]}></Options>
       {totalFeedback === 0 ? (
@@ -55,7 +55,7 @@ const App = () => {
       ) : (
         <Feedback values={[option, totalFeedback, positiveFeedback]}></Feedback>
       )}
-    </div>
+    </>
   );
 };
 

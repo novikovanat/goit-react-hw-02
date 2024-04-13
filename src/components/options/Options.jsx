@@ -1,3 +1,5 @@
+import css from '../options/options.module.css'
+
 export default function Feedback({ values: [handler, total] }) {
   function Button({ name, handler }) {
     return (
@@ -8,7 +10,7 @@ export default function Feedback({ values: [handler, total] }) {
   }
 
   return (
-    <div>
+    <div className={css.buttons}>
       <Button handler={handler} name="good"></Button>
       <Button handler={handler} name="bad"></Button>
       <Button handler={handler} name="neutral"></Button>
