@@ -39,7 +39,7 @@ const App = () => {
   return (
     <div>
       <Description></Description>
-      <Options handler={clickHandler}></Options>
+      <Options values={[clickHandler,totalFeedback]}></Options>
       {totalFeedback === 0 ? <Notification></Notification>:
       <Feedback values={[option, totalFeedback, positiveFeedback]}></Feedback>}
     </div>

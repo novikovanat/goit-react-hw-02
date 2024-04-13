@@ -12,7 +12,7 @@ export default function Feedback({
   function Paragraph({ content, value}) {
     return (
       <p>
-        {content}:<span>{value}</span>
+        {content}:<span>{value}</span> {content==="Positive" && "%"}
       </p>
     );
   }

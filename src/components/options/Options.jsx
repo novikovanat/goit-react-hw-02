@@ -1,4 +1,4 @@
-export default function Feedback({ handler }) {
+export default function Feedback({ values: [handler, total] }) {
   function Button({ name, handler }) {
     return (
       <button onClick={handler} name={name}>
@@ -12,7 +12,7 @@ export default function Feedback({ handler }) {
       <Button handler={handler} name="good"></Button>
       <Button handler={handler} name="bad"></Button>
       <Button handler={handler} name="neutral"></Button>
-      <Button handler={handler} name="reset"></Button>
+      {total > 0 && <Button handler={handler} name="reset"></Button>}
     </div>
   );
 }
