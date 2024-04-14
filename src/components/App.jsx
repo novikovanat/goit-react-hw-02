@@ -49,7 +49,7 @@ const App = () => {
   return (
     <>
       <Description></Description>
-      <Options values={[updateFeedback, totalFeedback]}></Options>
+      <Options values={[updateFeedback, option]}></Options>
       {totalFeedback === 0 ? (
         <Notification></Notification>
       ) : (

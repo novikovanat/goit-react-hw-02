@@ -1,20 +1,15 @@
-import css from '../options/options.module.css'
+import css from "../options/options.module.css";
 
-export default function Feedback({ values: [handler, total] }) {
-  function Button({ name, handler }) {
-    return (
-      <button onClick={handler} name={name}>
-        {name}
+export default function Feedback({ values: [handler, option] }) {
+  const buttonList = Object.keys(option).map((key) => (
+    <li key={key}>
+      <button onClick={handler} name={key}>
+        {key}
       </button>
-    );
-  }
+    </li>
+  ));
 
-  return (
-    <div className={css.buttons}>
-      <Button handler={handler} name="good"></Button>
-      <Button handler={handler} name="bad"></Button>
-      <Button handler={handler} name="neutral"></Button>
-      {total > 0 && <Button handler={handler} name="reset"></Button>}
-    </div>
-  );
+  return <ul className={css.buttons}>{buttonList}
+ </ul>;
 }
+
