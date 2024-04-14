@@ -26,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     window.localStorage.setItem("saved-clicks", JSON.stringify(option));
-  },[option]);
+  }, [option]);
 
   function updateFeedback(e) {
     let type = e.currentTarget.name;
@@ -40,16 +40,17 @@ const App = () => {
       case "bad":
         setOpions({ ...option, bad: option.bad + 1 });
         break;
-      // case "reset":
-      //   setOpions({ good: 0, neutral: 0, bad: 0 });
-      //   break;
     }
+  }
+
+  function reset() {
+    setOpions({ good: 0, neutral: 0, bad: 0 });
   }
 
   return (
     <>
       <Description></Description>
-      <Options values={[updateFeedback, option]}></Options>
+      <Options values={[updateFeedback, option, reset]}></Options>
       {totalFeedback === 0 ? (
         <Notification></Notification>
       ) : (

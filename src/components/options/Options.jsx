@@ -1,6 +1,7 @@
 import css from "../options/options.module.css";
 
-export default function Feedback({ values: [handler, option] }) {
+export default function Feedback({ values: [handler, option, reset] }) {
+
   const buttonList = Object.keys(option).map((key) => (
     <li key={key}>
       <button onClick={handler} name={key}>
@@ -10,6 +11,7 @@ export default function Feedback({ values: [handler, option] }) {
   ));
 
   return <ul className={css.buttons}>{buttonList}
- </ul>;
+   <li>{<button onClick={reset} name="reset">Reset</button>}</li></ul>;
 }
 
+ 

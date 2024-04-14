@@ -9,19 +9,19 @@ export default function Feedback({
     </li>
   ));
 
-  function Paragraph({ content, value}) {
-    return (
-      <p>
-        {content}:<span>{value}</span> {content==="Positive" && "%"}
-      </p>
-    );
-  }
-
   return (
     <div>
       <ul>{feedbackList}</ul>
       <Paragraph content="Total" value={total}></Paragraph>
       <Paragraph content="Positive" value={positiveFeedback}></Paragraph>
     </div>
+  );
+}
+
+function Paragraph({ content, value}) {
+  return (
+    <p>
+      {content}:<span>{value}</span> {content==="Positive" && "%"}
+    </p>
   );
 }
