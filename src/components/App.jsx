@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Description from "./description/Description";
 import Feedback from "./feedback/Feedback";
 import Options from "./options/Options";
-import Notification from "./Notification/Notification";
+import Notification from "./notification/Notification";
 
 const App = () => {
   const [option, setOpions] = useState(() => {
@@ -26,9 +26,9 @@ const App = () => {
 
   useEffect(() => {
     window.localStorage.setItem("saved-clicks", JSON.stringify(option));
-  });
+  },[option]);
 
-  function clickHandler(e) {
+  function updateFeedback(e) {
     let type = e.currentTarget.name;
     switch (type) {
       case "good":
@@ -40,16 +40,16 @@ const App = () => {
       case "bad":
         setOpions({ ...option, bad: option.bad + 1 });
         break;
-      case "reset":
-        setOpions({ good: 0, neutral: 0, bad: 0 });
-        break;
+      // case "reset":
+      //   setOpions({ good: 0, neutral: 0, bad: 0 });
+      //   break;
     }
   }
 
   return (
     <>
       <Description></Description>
-      <Options values={[clickHandler, totalFeedback]}></Options>
+      <Options values={[updateFeedback, totalFeedback]}></Options>
       {totalFeedback === 0 ? (
         <Notification></Notification>
       ) : (
