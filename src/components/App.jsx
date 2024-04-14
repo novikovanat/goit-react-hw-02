@@ -5,7 +5,7 @@ import Options from "./options/Options";
 import Notification from "./notification/Notification";
 
 const App = () => {
-  const [option, setOpions] = useState(() => {
+  const [feedbackValues, setFeedbackValues] = useState(() => {
     const savedClicks = window.localStorage.getItem("saved-clicks");
     if (savedClicks !== null) {
       return JSON.parse(savedClicks);
@@ -17,49 +17,55 @@ const App = () => {
     };
   });
 
-  const totalFeedback = Object.values(option).reduce(
+  const totalFeedbackValue = Object.values(feedbackValues).reduce(
     (total, value) => (total = value + total),
     0
   );
 
-  const positiveFeedback = Math.round((option.good / totalFeedback) * 100);
+  const positiveFeedback = Math.round(
+    (feedbackValues.good / totalFeedbackValue) * 100
+  );
 
   useEffect(() => {
-    window.localStorage.setItem("saved-clicks", JSON.stringify(option));
-  }, [option]);
+    window.localStorage.setItem("saved-clicks", JSON.stringify(feedbackValues));
+  }, [feedbackValues]);
 
-  function updateFeedback(e) {
-    let type = e.currentTarget.name;
-    switch (type) {
+  function updateFeedbackHandler(event) {
+    switch (event.currentTarget.name) {
       case "good":
-        setOpions({ ...option, good: option.good + 1 });
+        setFeedbackValues({ ...feedbackValues, good: feedbackValues.good + 1 });
         break;
       case "neutral":
-        setOpions({ ...option, neutral: option.neutral + 1 });
+        setFeedbackValues({
+          ...feedbackValues,
+          neutral: feedbackValues.neutral + 1,
+        });
         break;
       case "bad":
-        setOpions({ ...option, bad: option.bad + 1 });
+        setFeedbackValues({ ...feedbackValues, bad: feedbackValues.bad + 1 });
         break;
     }
   }
 
-  function reset() {
-    setOpions({ good: 0, neutral: 0, bad: 0 });
+  function resetHandler() {
+    setFeedbackValues({ good: 0, neutral: 0, bad: 0 });
   }
 
   return (
     <>
       <Description></Description>
       <Options
-        updateFeedbackHandler={updateFeedback}
-        option={option}
-        resetHandler={reset}
-        totalFeedbackValue={totalFeedback}
+        updateFeedbackHandler={updateFeedbackHandler}
+        resetHandler={resetHandler}
+        feedbackValues={feedbackValues}
+        totalFeedbackValue={totalFeedbackValue}
       ></Options>
-      {totalFeedback === 0 ? (
+      {totalFeedbackValue === 0 ? (
         <Notification></Notification>
       ) : (
-        <Feedback values={[option, totalFeedback, positiveFeedback]}></Feedback>
+        <Feedback
+          values={[feedbackValues, totalFeedbackValue, positiveFeedback]}
+        ></Feedback>
       )}
     </>
   );

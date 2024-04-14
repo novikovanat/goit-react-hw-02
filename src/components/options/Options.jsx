@@ -1,9 +1,12 @@
 import css from "../options/options.module.css";
 
-export default function Options({updateFeedbackHandler,option,resetHandler,totalFeedbackValue}
-  
-) {
-  const buttonList = Object.keys(option).map((key) => (
+export default function Options({
+  updateFeedbackHandler,
+  feedbackValues,
+  resetHandler,
+  totalFeedbackValue,
+}) {
+  const buttonList = Object.keys(feedbackValues).map((key) => (
     <li key={key}>
       <button onClick={updateFeedbackHandler} name={key}>
         {key}
@@ -14,7 +17,7 @@ export default function Options({updateFeedbackHandler,option,resetHandler,total
   return (
     <ul className={css.buttons}>
       {buttonList}
-      {totalFeedbackValue>0 && (
+      {totalFeedbackValue > 0 && (
         <li>
           {
             <button onClick={resetHandler} name="reset">
@@ -24,5 +27,5 @@ export default function Options({updateFeedbackHandler,option,resetHandler,total
         </li>
       )}
     </ul>
-  )
+  );
 }
