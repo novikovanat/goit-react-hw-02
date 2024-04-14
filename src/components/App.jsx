@@ -50,7 +50,12 @@ const App = () => {
   return (
     <>
       <Description></Description>
-      <Options values={[updateFeedback, option, reset]}></Options>
+      <Options
+        updateFeedbackHandler={updateFeedback}
+        option={option}
+        resetHandler={reset}
+        totalFeedbackValue={totalFeedback}
+      ></Options>
       {totalFeedback === 0 ? (
         <Notification></Notification>
       ) : (
