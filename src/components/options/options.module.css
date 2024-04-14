@@ -1,4 +1,8 @@
-.buttons{
-    display: flex;
-    gap: 12px;
+.buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.button::first-letter {
+  text-transform: capitalize;
 }

@@ -8,7 +8,7 @@ export default function Options({
 }) {
   const buttonList = Object.keys(feedbackValues).map((key) => (
     <li key={key}>
-      <button onClick={updateFeedbackHandler} name={key}>
+      <button className={css.button} onClick={updateFeedbackHandler} name={key}>
         {key}
       </button>
     </li>
@@ -20,7 +20,7 @@ export default function Options({
       {totalFeedbackValue > 0 && (
         <li>
           {
-            <button onClick={resetHandler} name="reset">
+            <button className={css.button} onClick={resetHandler} name="reset">
               Reset
             </button>
           }
