@@ -53,19 +53,21 @@ const App = () => {
 
   return (
     <>
-      <Description></Description>
+      <Description />
       <Options
         updateFeedbackHandler={updateFeedbackHandler}
         resetHandler={resetHandler}
         feedbackValues={feedbackValues}
         totalFeedbackValue={totalFeedbackValue}
-      ></Options>
+      />
       {totalFeedbackValue === 0 ? (
-        <Notification></Notification>
+        <Notification />
       ) : (
         <Feedback
-          values={[feedbackValues, totalFeedbackValue, positiveFeedback]}
-        ></Feedback>
+          feedbackValues={feedbackValues}
+          totalFeedbackValue={totalFeedbackValue}
+          positiveFeedback={positiveFeedback}
+        />
       )}
     </>
   );

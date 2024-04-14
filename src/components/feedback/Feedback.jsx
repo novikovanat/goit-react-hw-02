@@ -1,7 +1,9 @@
 export default function Feedback({
-  values: [option, total, positiveFeedback],
+  feedbackValues,
+  totalFeedbackValue,
+  positiveFeedback,
 }) {
-  const feedbackList = Object.entries(option).map((value) => (
+  const feedbackList = Object.entries(feedbackValues).map((value) => (
     <li key={value[0]}>
       <p>
         {value[0]}:<span>{value[1]}</span>
@@ -12,16 +14,16 @@ export default function Feedback({
   return (
     <div>
       <ul>{feedbackList}</ul>
-      <Paragraph content="Total" value={total}></Paragraph>
+      <Paragraph content="Total" value={totalFeedbackValue}></Paragraph>
       <Paragraph content="Positive" value={positiveFeedback}></Paragraph>
     </div>
   );
 }
 
-function Paragraph({ content, value}) {
+function Paragraph({ content, value }) {
   return (
     <p>
-      {content}:<span>{value}</span> {content==="Positive" && "%"}
+      {content}:<span>{value}</span> {content === "Positive" && "%"}
     </p>
   );
 }
